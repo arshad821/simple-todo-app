@@ -15,13 +15,15 @@ function App() {
   const [successMsg, setSuccessMsg] = useState('');
 
   const showMessage = (type, msg) => {
+    setErrorMsg('');
+    setSuccessMsg('');
     if (type === 'error') setErrorMsg(msg);
     else setSuccessMsg(msg);
 
     setTimeout(() => {
       setErrorMsg('');
       setSuccessMsg('');
-    }, 10000);
+    }, 5000);
   };
 
   const login = async () => {
