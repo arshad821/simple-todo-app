@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// 👇 This ensures cookies are sent with every request (for session/login)
+axios.defaults.withCredentials = true;
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [credentials, setCredentials] = useState({ username: '', password: '' });
@@ -41,8 +44,12 @@ function App() {
   };
 
   const fetchTodos = async () => {
-    const res = await axios.get('https://simple-todo-app-backend-axk7.onrender.com/api/todos');
-    setTodos(res.data);
+    try {
+      const res = await axios.get('https://simple-todo-app-backend-axk7.onrender.com/api/todos');
+      setTodos(res.data);
+    } catch (err) {
+      showMessage('error', 'Failed to fetch todos');
+    }
   };
 
   useEffect(() => {
@@ -55,16 +62,24 @@ function App() {
       return;
     }
 
-    await axios.post('https://simple-todo-app-backend-axk7.onrender.com/api/todos', { text: newTodo });
-    setNewTodo('');
-    fetchTodos();
-    showMessage('success', 'Todo added successfully');
+    try {
+      await axios.post('https://simple-todo-app-backend-axk7.onrender.com/api/todos', { text: newTodo });
+      setNewTodo('');
+      fetchTodos();
+      showMessage('success', 'Todo added successfully');
+    } catch (err) {
+      showMessage('error', 'Failed to add todo');
+    }
   };
 
   const deleteTodo = async (id) => {
-    await axios.delete(`https://simple-todo-app-backend-axk7.onrender.com/api/todos/${id}`);
-    fetchTodos();
-    showMessage('success', 'Todo deleted successfully');
+    try {
+      await axios.delete(`https://simple-todo-app-backend-axk7.onrender.com/api/todos/${id}`);
+      fetchTodos();
+      showMessage('success', 'Todo deleted successfully');
+    } catch (err) {
+      showMessage('error', 'Failed to delete todo');
+    }
   };
 
   const updateTodo = async () => {
@@ -73,11 +88,15 @@ function App() {
       return;
     }
 
-    await axios.put(`https://simple-todo-app-backend-axk7.onrender.com/api/todos/${editTodoId}`, { text: editTodoText });
-    setEditTodoId(null);
-    setEditTodoText('');
-    fetchTodos();
-    showMessage('success', 'Todo updated successfully');
+    try {
+      await axios.put(`https://simple-todo-app-backend-axk7.onrender.com/api/todos/${editTodoId}`, { text: editTodoText });
+      setEditTodoId(null);
+      setEditTodoText('');
+      fetchTodos();
+      showMessage('success', 'Todo updated successfully');
+    } catch (err) {
+      showMessage('error', 'Failed to update todo');
+    }
   };
 
   return (
