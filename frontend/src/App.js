@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // 👇 This ensures cookies are sent with every request (for session/login)
-axios.defaults.withCredentials = true;
+//axios.defaults.withCredentials = true;
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
