@@ -18,7 +18,7 @@ function App() {
     setTimeout(() => {
       setErrorMsg('');
       setSuccessMsg('');
-    }, 3000);
+    }, 10000);
   };
 
   const login = async () => {

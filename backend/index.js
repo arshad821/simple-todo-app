@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 let todos = [];
-let user = { username: "test", password: "1234" };
+let user = { username: "Arshad", password: "Arshad@7" };
 
 // Login endpoint
 app.post('/api/login', (req, res) => {
