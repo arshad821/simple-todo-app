@@ -6,7 +6,7 @@ const app = express();
 
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 let todos = [];
 let user = { username: "Arshad", password: "Arshad@7" };
