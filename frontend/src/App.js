@@ -41,7 +41,7 @@ function App() {
   };
 
   const fetchTodos = async () => {
-    const res = await axios.get('http://localhost:5000/api/todos');
+    const res = await axios.get('https://simple-todo-app-backend-axk7.onrender.com/api/todos');
     setTodos(res.data);
   };
 
