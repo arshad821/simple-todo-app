@@ -28,7 +28,7 @@ function App() {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/login', credentials);
+      await axios.post('https://simple-todo-app-backend-axk7.onrender.com/api/login', credentials);
       setIsLoggedIn(true);
       showMessage('success', 'Login successful');
     } catch (err) {
@@ -55,14 +55,14 @@ function App() {
       return;
     }
 
-    await axios.post('http://localhost:5000/api/todos', { text: newTodo });
+    await axios.post('https://simple-todo-app-backend-axk7.onrender.com/api/todos', { text: newTodo });
     setNewTodo('');
     fetchTodos();
     showMessage('success', 'Todo added successfully');
   };
 
   const deleteTodo = async (id) => {
-    await axios.delete(`http://localhost:5000/api/todos/${id}`);
+    await axios.delete(`https://simple-todo-app-backend-axk7.onrender.com/api/todos/${id}`);
     fetchTodos();
     showMessage('success', 'Todo deleted successfully');
   };
@@ -73,7 +73,7 @@ function App() {
       return;
     }
 
-    await axios.put(`http://localhost:5000/api/todos/${editTodoId}`, { text: editTodoText });
+    await axios.put(`https://simple-todo-app-backend-axk7.onrender.com/api/todos/${editTodoId}`, { text: editTodoText });
     setEditTodoId(null);
     setEditTodoText('');
     fetchTodos();
