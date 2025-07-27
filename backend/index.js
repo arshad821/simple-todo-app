@@ -6,6 +6,10 @@ const app = express();
 
 
 app.use(cors({origin:'https://simple-todo-app-snowy-three.vercel.app'}));
+app.use((req, res, next) => {
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  next();
+});
 app.use(express.json());
 
 let todos = [];
