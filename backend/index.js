@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 
-app.use(cors({origin:'*'}));
+app.use(cors({origin:'https://simple-todo-app-snowy-three.vercel.app/'}));
 app.use(express.json());
 
 let todos = [];
